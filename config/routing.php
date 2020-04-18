@@ -7,7 +7,7 @@ $di['router'] = function () use (
 ) {
     $router = new \Phalcon\Mvc\Router(false);
     $router->clear();
-    $moduleRouting = __DIR__ . '/../apps/' . $default_module . '/Config/routing.php';
+    $moduleRouting = __DIR__ . '/../apps/' . ucfirst($default_module) . '/Config/routing.php';
     if (file_exists($moduleRouting) && is_file($moduleRouting)) {
         $router = include $moduleRouting;
     } else {
