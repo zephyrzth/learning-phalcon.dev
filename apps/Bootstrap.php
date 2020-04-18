@@ -47,6 +47,6 @@ class Bootstrap extends \Phalcon\Mvc\Application
         $this->registerModules($this->modules);
         $this->handle(
             $_SERVER["REQUEST_URI"]
-        )->getContent();
+        )->send();
     }
 }
