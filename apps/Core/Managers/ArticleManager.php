@@ -47,4 +47,18 @@ class ArticleManager extends BaseManager
         return $article;
     }
 
+    public function delete($id)
+    {
+        $article = Article::findFirstById($id);
+        if (!$article) {
+            throw new \Exception('Article not found', 404);
+        }
+        if (false === $article->delete()) {
+            foreach ($article->getMessages() as $message) {
+                $error[] = (string) $message;
+            }
+            throw new \Exception(json_encode($error));
+        }
+        return true;
+    }
 }

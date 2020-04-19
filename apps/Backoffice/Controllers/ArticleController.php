@@ -60,4 +60,15 @@ class ArticleController extends BaseController
         }
     }
 
+    public function deleteAction($id)
+    {
+        $this->view->disable();
+        $article_manager = $this->getDI()->get('core_article_manager');
+        try {
+            $article_manager->delete($id);
+            echo "Article was deleted.";
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }
