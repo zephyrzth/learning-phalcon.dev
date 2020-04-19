@@ -31,3 +31,16 @@ $di['logger'] = function () {
     $logger = new Logger($file, array('mode' => 'w+'));
     return $logger;
 };
+
+$di['db'] = function () use ($config) {
+    return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+        "host" => $config->database->host,
+        "username" => $config->database->username,
+        "password" => $config->database->password,
+        "dbname" => $config->database->dbname,
+    ));
+};
+
+$di['core_article_manager'] = function () {
+    return new App\Core\Managers\ArticleManager();
+};
