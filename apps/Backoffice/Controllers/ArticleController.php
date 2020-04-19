@@ -43,4 +43,21 @@ class ArticleController extends BaseController
             echo $e->getMessage();
         }
     }
+
+    public function updateAction($id)
+    {
+        $this->view->disable();
+        $article_manager = $this->getDI()->get(
+            'core_article_manager'
+        );
+        try {
+            $article = $article_manager->update($id, [
+                'article_short_title' => 'Modified article 1'
+            ]);
+            echo $article->getId(), " was updated.";
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }

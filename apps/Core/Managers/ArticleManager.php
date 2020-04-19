@@ -29,4 +29,22 @@ class ArticleManager extends BaseManager
     {
         return Article::find($parameters);
     }
+
+    public function update($id, $data)
+    {
+        $article = Article::findFirstById($id);
+        if (!$article) {
+            throw new \Exception('Article not found', 404);
+        }
+        $article->setArticleShortTitle($data['article_short_title']);
+        $article->setUpdatedAt(new \Phalcon\Db\RawValue('NOW()'));
+        if (false === $article->update()) {
+            foreach ($article->getMessages() as $message) {
+                $error[] = (string) $message;
+            }
+            throw new \Exception(json_encode($error));
+        }
+        return $article;
+    }
+
 }
