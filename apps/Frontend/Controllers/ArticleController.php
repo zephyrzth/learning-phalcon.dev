@@ -4,6 +4,11 @@ namespace App\Frontend\Controllers;
  
 class ArticleController extends BaseController
 {
+    public function indexAction()
+    {
+        return $this->dispatcher->forward(['action' => 'list']);
+    }
+
     public function listAction()
     {
         // Dapatkan objek dari dependency container
