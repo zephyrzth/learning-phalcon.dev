@@ -61,7 +61,7 @@ $di['router'] = function () use ($default_module, $modules, $di, $config) {
     }
  
     // Dapat diaktifkan jika ingin melihat hasil penambahan routing
-    var_dump($router);
+    // var_dump($router);
  
     return $router;
 };
