@@ -12,7 +12,7 @@ return new \Phalcon\Config(array(
     ),
     'database' => array(
         'adapter' => 'Mysql',
-        'host' => '192.168.43.230',
+        'host' => 'localhost',
         'username' => 'learning_phalcon',
         'password' => 'learning_phalcon',
         'dbname' => 'learning_phalcon',
