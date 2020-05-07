@@ -3,6 +3,7 @@
 namespace App\Core\Managers;
  
 use \App\Core\Models\User;
+use App\Core\Models\UserGroup;
  
 class UserManager extends BaseManager
 {
@@ -16,7 +17,7 @@ class UserManager extends BaseManager
      * @param array $data
      * @return string|\App\Core\Models\User
      */
-    public function create($data)
+    public function create($data, $user_group_name = 'User')
     {
         $security = $this->di->get('security');
  
@@ -27,6 +28,8 @@ class UserManager extends BaseManager
         $user->user_password = $security->hash($data['user_password']);
         $user->user_is_active = $data['user_is_active'];
  
+        // set group id
+        $user->user_group_id = $this->findFirstGroupByName($user_group_name)->getId();
         
         if (false === $user->create()) {
             foreach ($user->getMessages() as $message) {
@@ -37,4 +40,9 @@ class UserManager extends BaseManager
         
         return $user;
     }
+
+    public function findFirstGroupByName($user_group_name) {
+        return UserGroup::findFirstByUserGroupName($user_group_name);
+    }
+
 }

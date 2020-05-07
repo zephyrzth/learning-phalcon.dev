@@ -3,6 +3,9 @@
 namespace App\Core\Models;
 
 use Phalcon\Mvc\Model\Behavior\Timestampable;
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\Uniqueness;
+use Phalcon\Validation\Validator\Email;
  
 class User extends Base
 {
@@ -38,4 +41,28 @@ class User extends Base
             ),
         )));
     }
+
+    public function validation()
+    {
+        $validator = new Validation();
+ 
+        $validator->add(
+            // Nama kolom
+            'user_email',
+            new Email([
+                "message" => "Invalid email address"
+            ])
+        );
+ 
+        $validator->add(
+            // Nama kolom
+            'user_email',
+            new Uniqueness([
+                "message" => "The email is already registered"
+            ])
+        );
+ 
+        return $this->validate($validator);
+    }
+
 }
