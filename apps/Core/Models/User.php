@@ -1,6 +1,8 @@
 <?php
  
 namespace App\Core\Models;
+
+use Phalcon\Mvc\Model\Behavior\Timestampable;
  
 class User extends Base
 {
@@ -24,5 +26,16 @@ class User extends Base
                 'reusable' => true
             )
         );
+
+        // $this->addBehavior(new Timestampable(array(
+        //     'beforeValidationOnCreate' => array(
+        //         'field' => 'user_created_at',
+        //         'format' => 'Y-m-d H:i:s'
+        //     ),
+        //     'beforeValidationOnUpdate' => array(
+        //         'field' => 'user_updated_at',
+        //         'format' => 'Y-m-d H:i:s'
+        //     ),
+        // )));
     }
 }
