@@ -13,22 +13,23 @@ class UserTask extends Task
     public function createAction($firstName, $lastName, $email, $password, $isActive)
     {
         $manager = $this->di->get('core_user_manager');
-        echo "sukses";
-        // try {
-        //     $user = $manager->create(array(
-        //         'user_first_name' => $firstName,
-        //         'user_last_name' => $lastName,
-        //         'user_email' => $email,
-        //         'user_password' => $password,
-        //         'user_is_active' => $isActive,
-        //     ));
+
+        try {
+            $user = $manager->create(array(
+                'user_first_name' => $firstName,
+                'user_last_name' => $lastName,
+                'user_email' => $email,
+                'user_password' => $password,
+                'user_is_active' => $isActive
+            ));
  
-        //     echo "User ". $user->user_first_name . " " . $user->user_last_name . " has been created. ID: " . $user->id . "\n";
+            echo "User ". $user->user_first_name . " " . $user->user_last_name . " has been created. ID: " . $user->id . "\n";
+            $user->clear();
  
-        // } catch (\Exception $e) {
-        //     echo "There were some errors creating the user. <br>";
+        } catch (\Exception $e) {
+            echo "There were some errors creating the user. <br>";
  
-        //     var_dump($e->getMessage());
-        // }
+            var_dump($e->getMessage());
+        }
     }
 }
