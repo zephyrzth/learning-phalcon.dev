@@ -9,7 +9,7 @@ class UserGroup extends Base
         $this->hasMany(
             'id',
             'App\Core\Models\User',
-            'group_id',
+            'user_group_id',
             array(
                 'alias' => 'users'
             )
