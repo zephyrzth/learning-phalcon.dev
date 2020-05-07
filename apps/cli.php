@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-set_time_limit(30);
-
 use App\Core\Managers\UserManager;
 use Exception;
 use Phalcon\Cli\Console;

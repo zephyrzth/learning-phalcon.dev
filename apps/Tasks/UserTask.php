@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tasks;
 
-set_time_limit(30);
-
 use Phalcon\Cli\Task;
 
 class UserTask extends Task
@@ -24,8 +22,7 @@ class UserTask extends Task
             ));
  
             echo "User ". $user->user_first_name . " " . $user->user_last_name . " has been created. ID: " . $user->id . "\n";
-            $user->clear();
- 
+
         } catch (\Exception $e) {
             echo "There were some errors creating the user. <br>";
  
