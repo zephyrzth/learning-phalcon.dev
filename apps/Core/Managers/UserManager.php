@@ -4,6 +4,7 @@ namespace App\Core\Managers;
  
 use \App\Core\Models\User;
 use App\Core\Models\UserGroup;
+use App\Core\Models\UserProfile;
  
 class UserManager extends BaseManager
 {
@@ -30,15 +31,25 @@ class UserManager extends BaseManager
  
         // set group id
         $user->user_group_id = $this->findFirstGroupByName($user_group_name)->id;
+
+        //Set user profile
+        $profile = new UserProfile();
+        // Set value dari kolom user profile
+        $profile->user_profile_location = $data['user_profile_location'];
+        $profile->user_profile_birthday = $data['user_profile_birthday'];
+ 
+        $user->profile = $profile;
         
-        if (false === $user->create()) {
-            foreach ($user->getMessages() as $message) {
-                $error[] = (string) $message;
-            }
-            throw new \Exception(json_encode($error));
-        }
+        return $this->save($user);
         
-        return $user;
+        // if (false === $user->create()) {
+        //     foreach ($user->getMessages() as $message) {
+        //         $error[] = (string) $message;
+        //     }
+        //     throw new \Exception(json_encode($error));
+        // }
+        
+        // return $user;
     }
 
     public function findFirstGroupByName($user_group_name) {
