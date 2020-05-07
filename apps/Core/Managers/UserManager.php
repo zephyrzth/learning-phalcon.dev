@@ -29,7 +29,7 @@ class UserManager extends BaseManager
         $user->user_is_active = $data['user_is_active'];
  
         // set group id
-        $user->user_group_id = $this->findFirstGroupByName($user_group_name)->getId();
+        $user->user_group_id = $this->findFirstGroupByName($user_group_name)->id;
         
         if (false === $user->create()) {
             foreach ($user->getMessages() as $message) {
