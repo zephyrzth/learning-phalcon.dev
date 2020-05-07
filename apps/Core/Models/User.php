@@ -27,15 +27,15 @@ class User extends Base
             )
         );
 
-        // $this->addBehavior(new Timestampable(array(
-        //     'beforeValidationOnCreate' => array(
-        //         'field' => 'user_created_at',
-        //         'format' => 'Y-m-d H:i:s'
-        //     ),
-        //     'beforeValidationOnUpdate' => array(
-        //         'field' => 'user_updated_at',
-        //         'format' => 'Y-m-d H:i:s'
-        //     ),
-        // )));
+        $this->addBehavior(new Timestampable(array(
+            'beforeValidationOnCreate' => array(
+                'field' => 'user_created_at',
+                'format' => 'Y-m-d H:i:s'
+            ),
+            'beforeValidationOnUpdate' => array(
+                'field' => 'user_updated_at',
+                'format' => 'Y-m-d H:i:s'
+            ),
+        )));
     }
 }
