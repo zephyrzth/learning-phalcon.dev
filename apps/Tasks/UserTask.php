@@ -1,11 +1,13 @@
 <?php
- 
+
 declare(strict_types=1);
- 
+
 namespace App\Tasks;
- 
+
+set_time_limit(30);
+
 use Phalcon\Cli\Task;
- 
+
 class UserTask extends Task
 {
     public function createAction($firstName, $lastName, $email, $password, $isActive)
