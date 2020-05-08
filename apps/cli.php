@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Core\Managers\CategoryManager;
 use App\Core\Managers\UserManager;
 use Exception;
 use Phalcon\Cli\Console;
@@ -29,6 +30,11 @@ $container->setShared('dispatcher', $dispatcher);
 
 $container->setShared('core_user_manager', function() use ($container) {
     $repo = new UserManager();
+    return $repo;
+});
+
+$container->setShared('core_category_manager', function() use ($container) {
+    $repo = new CategoryManager();
     return $repo;
 });
 
