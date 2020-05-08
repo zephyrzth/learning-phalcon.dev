@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Core\Managers\ArticleManager;
 use App\Core\Managers\CategoryManager;
 use App\Core\Managers\UserManager;
 use Exception;
@@ -35,6 +36,11 @@ $container->setShared('core_user_manager', function() use ($container) {
 
 $container->setShared('core_category_manager', function() use ($container) {
     $repo = new CategoryManager();
+    return $repo;
+});
+
+$container->setShared('core_article_manager', function() use ($container) {
+    $repo = new ArticleManager();
     return $repo;
 });
 
